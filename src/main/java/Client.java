@@ -63,11 +63,12 @@ public class Client {
 			Scanner scanner = new Scanner(System.in);
 
 			// this will run forever, this is an infinite loop
+			// infinite look is broken by command "Shut down" which will use a break statement
 			while(true) {
 				// the clients message
 				String messageToSend = scanner.nextLine();
 
-				// The write90 method of BufferedWriter writes the given argument, String in this case,
+				// The write() method of BufferedWriter writes the given argument, String in this case,
 				// to the underlying writer which writes it to the underlying output stream.
 				// Here thatis the OutputStreamWriter and OutputStream respectively
 				bufferedWriter.write(messageToSend);
