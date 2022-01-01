@@ -1,16 +1,13 @@
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.net.Socket;
-import java.net.UnknownHostException;
 import java.util.Scanner;
 
 public class Client {
-	public static void main(String[] args){
+	public static void main(String[] args) {
 
 		// create socket class
 		Socket socket = null;
@@ -41,6 +38,10 @@ public class Client {
 		BufferedWriter bufferedWriter = null;
 
 
+		// Confirmation that the client session has started
+		System.out.println("The client session has started.");
+		System.out.println("Type Commands below:");
+		System.out.println(" ");
 		try {
 			// instanciate socket
 			socket = new Socket("localhost", 1234);
@@ -64,7 +65,7 @@ public class Client {
 
 			// this will run forever, this is an infinite loop
 			// infinite look is broken by command "Shut down" which will use a break statement
-			while(true) {
+			while (true) {
 				// the clients message
 				String messageToSend = scanner.nextLine();
 
@@ -97,7 +98,12 @@ public class Client {
 				// When the break keyword is encountered inside a loop in Java, the loop is immediately terminated
 				// and the program control resumes at the next statement following the loop.
 				// the loop here is the while(true)
-				if(messageToSend.equalsIgnoreCase("Shut down")){
+				if (messageToSend.equalsIgnoreCase("Shut down")) {
+
+					// console output to notify client the session has ended
+					System.out.println("Your session has been ended.");
+					System.out.println(" ");
+
 					break;
 				}
 			}
@@ -109,21 +115,21 @@ public class Client {
 		// In other words, it is always executed.
 		// Therefore, it should contain all the crucial statements.
 		// here, these are closing the streams
-		finally{
-			try{
-				if(socket != null){
+		finally {
+			try {
+				if (socket != null) {
 					socket.close();
 				}
-				if(inputStreamReader != null){
+				if (inputStreamReader != null) {
 					inputStreamReader.close();
 				}
-				if(outputStreamWriter != null){
+				if (outputStreamWriter != null) {
 					outputStreamWriter.close();
 				}
-				if(bufferedReader != null){
+				if (bufferedReader != null) {
 					bufferedReader.close();
 				}
-				if(bufferedWriter != null){
+				if (bufferedWriter != null) {
 					bufferedWriter.close();
 				}
 			} catch (IOException e) {
